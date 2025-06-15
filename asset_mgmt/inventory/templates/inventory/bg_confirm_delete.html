@@ -1,0 +1,14 @@
+<!-- bg_confirm_delete.html -->
+{% extends "inventory/base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>{{ title }}</h2>
+  <p>Bạn có chắc muốn xóa phiếu giao
+     <strong>{{ object.ma_bg }}</strong> không?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a href="{% url 'bg_list' %}" class="btn btn-secondary">Hủy</a>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "inventory/base.html" %}
+{% block title %}Xóa nhân viên{% endblock %}
+
+{% block content %}
+<div class="card border-danger">
+  <div class="card-header bg-danger text-white">
+    Xác nhận xóa
+  </div>
+  <div class="card-body">
+    <p>Bạn có chắc muốn xóa <strong>{{ object.ho_ten }} ({{ object.ma_nv }})</strong>?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Xóa</button>
+      <a href="{% url 'nv_list' %}" class="btn btn-secondary">Hủy</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

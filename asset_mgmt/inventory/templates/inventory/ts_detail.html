@@ -1,0 +1,40 @@
+{% extends "inventory/base.html" %}
+{% block title %}Chi tiết {{ ts.ten_ts }}{% endblock %}
+
+{% block content %}
+<div class="card mb-4">
+  <div class="card-header">
+    <h5 class="mb-0">Chi tiết Tài sản: {{ ts.ten_ts }} ({{ ts.ma_ts }})</h5>
+  </div>
+  <div class="card-body row">
+    <dl class="row col-md-6">
+      <dt class="col-sm-4">Loại:</dt>
+        <dd class="col-sm-8">{{ ts.loai_ts }}</dd>
+      <dt class="col-sm-4">Đơn vị:</dt>
+        <dd class="col-sm-8">{{ ts.don_vi }}</dd>
+      <dt class="col-sm-4">Tình trạng:</dt>
+        <dd class="col-sm-8">{{ ts.tinh_trang }}</dd>
+    </dl>
+    <div class="col-md-6">
+      <h6>Người nhận cuối cùng</h6>
+      {% if last_bg %}
+        <ul class="list-unstyled">
+          <li><strong>Ngày giao:</strong> {{ last_bg.ngay_giao }}</li>
+          <li><strong>Người giao:</strong> {{ last_bg.nguoi_giao.ho_ten }}</li>
+          <li><strong>Người nhận:</strong> {{ last_bg.nguoi_nhan.ho_ten }}</li>
+          {% if last_bg.ghi_chu %}
+            <li><strong>Ghi chú:</strong> {{ last_bg.ghi_chu }}</li>
+          {% endif %}
+        </ul>
+      {% else %}
+        <p class="text-muted">Chưa có lịch sử bàn giao.</p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="card-footer">
+    <a href="{% url 'ts_edit' ts.ma_ts %}" class="btn btn-warning">Sửa</a>
+    <a href="{% url 'bg_add' %}" class="btn btn-primary">Tạo phiếu giao</a>
+    <a href="{% url 'ts_list' %}" class="btn btn-secondary">Quay lại danh sách</a>
+  </div>
+</div>
+{% endblock %}

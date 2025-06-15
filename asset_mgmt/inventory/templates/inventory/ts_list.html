@@ -1,0 +1,41 @@
+<!-- ts_list.html -->
+{% extends "inventory/base.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Danh sách Tài sản</h2>
+  <a href="{% url 'ts_add' %}" class="btn btn-success mb-3">Thêm tài sản</a>
+  <table class="table table-bordered table-striped">
+    <thead class="table-light">
+      <tr>
+        <th>Mã TS</th>
+        <th>Tên TS</th>
+        <th>Loại</th>
+        <th>Đơn vị</th>
+        <th>Tình trạng</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ts in ts_list %}
+      <tr>
+        <td>
+            <a href="{% url 'ts_detail' ts.ma_ts %}">
+                {{ ts.ma_ts }}
+            </a>
+        </td>
+        <td>{{ ts.ten_ts }}</td>
+        <td>{{ ts.loai_ts }}</td>
+        <td>{{ ts.don_vi }}</td>
+        <td>{{ ts.tinh_trang }}</td>
+        <td>
+          <a href="{% url 'ts_edit' ts.ma_ts %}" class="btn btn-sm btn-primary">Sửa</a>
+          <a href="{% url 'ts_delete' ts.ma_ts %}" class="btn btn-sm btn-danger">Xóa</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="6" class="text-center">Chưa có tài sản nào.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
