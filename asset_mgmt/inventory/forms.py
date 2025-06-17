@@ -10,6 +10,12 @@ class TSForm(forms.ModelForm):
     class Meta:
         model = TS
         fields = '__all__'
+        widgets = {
+            'ngay_mua': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'khau_hao_nam': forms.NumberInput(attrs={'class': 'form-control'}),
+            # các widget khác...
+        }
+
 
 class BGForm(forms.ModelForm):
     class Meta:

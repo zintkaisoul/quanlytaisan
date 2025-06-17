@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import NV, TS, BG
 from .forms import NVForm, TSForm, BGForm
+import qrcode
+import io
+import base64
+from django.http import HttpResponse
 
 # ====== NV views ======
 def nv_list(request):
@@ -70,6 +74,14 @@ def ts_delete(request, pk):
         'object': ts,
         'title': f'Xác nhận xóa {ts.ten_ts}'
     })
+
+def ts_qr_code(request, pk):
+    ts_url = request.build_absolute_uri(f'/ts/{pk}/')  # ví dụ: http://localhost:8000/ts/TS01/
+    img = qrcode.make(ts_url)
+    buffer = io.BytesIO()
+    img.save(buffer, format='PNG')
+    image_base64 = base64.b64encode(buffer.getvalue()).decode()
+    return HttpResponse(buffer.getvalue(), content_type='image/png')
 
 
 # ====== BG views ======

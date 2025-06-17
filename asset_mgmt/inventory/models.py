@@ -1,4 +1,6 @@
 from django.db import models
+from datetime import date
+
 
 class NV(models.Model):
     ma_nv = models.CharField(max_length=10, primary_key=True)
@@ -17,8 +19,13 @@ class TS(models.Model):
     don_vi = models.CharField(max_length=50)
     tinh_trang = models.CharField(max_length=100)
 
+    # Thêm mới:
+    ngay_mua = models.DateField(default=date.today)
+    khau_hao_nam = models.PositiveIntegerField(default=5)
+
     def __str__(self):
         return f"{self.ma_ts} - {self.ten_ts}"
+
 
 class BG(models.Model):
     ma_bg = models.CharField(max_length=10, primary_key=True)

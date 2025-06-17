@@ -14,6 +14,10 @@
         <dd class="col-sm-8">{{ ts.don_vi }}</dd>
       <dt class="col-sm-4">Tình trạng:</dt>
         <dd class="col-sm-8">{{ ts.tinh_trang }}</dd>
+      <dt class="col-sm-4">Ngày mua:</dt>
+        <dd class="col-sm-8">{{ ts.ngay_mua }}</dd>
+      <dt class="col-sm-4">Khấu hao:</dt>
+        <dd class="col-sm-8">{{ ts.khau_hao_nam }} năm</dd>
     </dl>
     <div class="col-md-6">
       <h6>Người nhận cuối cùng</h6>
@@ -26,6 +30,11 @@
             <li><strong>Ghi chú:</strong> {{ last_bg.ghi_chu }}</li>
           {% endif %}
         </ul>
+        <div class="text-left mt-4">
+          <h6>QR truy cập nhanh:</h6>
+          <img src="{% url 'ts_qr_code' ts.ma_ts %}" alt="QR Code" style="max-width:200px;">
+          <p class="small text-muted">{{ request.build_absolute_uri }}</p>
+        </div>
       {% else %}
         <p class="text-muted">Chưa có lịch sử bàn giao.</p>
       {% endif %}

@@ -13,6 +13,7 @@ urlpatterns = [
     path('ts/<pk>/', views.ts_detail, name='ts_detail'),
     path('ts/<pk>/edit/', views.ts_update, name='ts_edit'),
     path('ts/<pk>/delete/', views.ts_delete, name='ts_delete'),
+    path('ts/<pk>/qr/', views.ts_qr_code, name='ts_qr_code'),
 
     path('bg/', views.bg_list, name='bg_list'),
     path('bg/add/', views.bg_create, name='bg_add'),
